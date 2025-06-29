@@ -2,16 +2,13 @@ from setuptools import setup, Extension, find_packages
 from pathlib import Path
 
 BSEC = True
+BSEC_ROOT = Path('bsec2-6-1-0_generic_release_22102024')
+BSEC_SENSOR_API_ROOT = BSEC_ROOT / 'examples/BSEC_Integration_Examples/src/bme68x'
 
-if BSEC:
-    ext_comp_args = ['-D BSEC']
-    libs = ['pthread', 'm', 'rt', 'algobsec']
-    lib_dirs = ['/usr/local/lib',
-                'BSEC_2.0.6.1_Generic_Release_04302021/algo/normal_version/bin/RaspberryPi/PiThree_ArmV6']
-else:
-    ext_comp_args = []
-    libs = ['pthread', 'm', 'rt']
-    lib_dirs = ['/usr/local/lib']
+ext_comp_args = ['-D BSEC']
+libs = ['pthread', 'm', 'rt', 'algobsec']
+lib_dirs = ['/usr/local/lib',
+            str(BSEC_ROOT / 'algo/bsec_IAQ/bin/RaspberryPi/PiFour_Armv8')]
 
 LIBDIR = Path(__file__).parent
 
@@ -19,12 +16,17 @@ README = (LIBDIR / "README.md").read_text()
 
 bme68x = Extension('bme68x',
                    extra_compile_args=ext_comp_args,
-                   include_dirs=['/usr/local/include'],
+                   include_dirs=['/usr/local/include',
+                                  str(BSEC_SENSOR_API_ROOT),
+                                  str(BSEC_ROOT / 'algo/bsec_IAQ/inc')],
                    libraries=libs,
                    library_dirs=lib_dirs,
-                   depends=['BME68x-Sensor-API/bme68x.h', 'BME68x-Sensor-API/bme68x.c',
-                            'BME68x-Sensor-API/bme68x_defs.h', 'internal_functions.h', 'internal_functions.c'],
-                   sources=['bme68xmodule.c', 'BME68x-Sensor-API/bme68x.c', 'internal_functions.c'])
+                   depends=[str(BSEC_SENSOR_API_ROOT / 'bme68x.h'),
+                            str(BSEC_SENSOR_API_ROOT / 'bme68x.c'),
+                            str(BSEC_SENSOR_API_ROOT / 'bme68x_defs.h'),
+                            'internal_functions.h',
+                            'internal_functions.c'],
+                   sources=['bme68xmodule.c', str(BSEC_SENSOR_API_ROOT / 'bme68x.c'), 'internal_functions.c'])
 
 setup(name='bme68x',
       version='1.3.0',
@@ -47,11 +49,7 @@ setup(name='bme68x',
       keywords='bme68x bme680 bme688 BME68X BME680 BME688 bsec BSEC sensor environment temperature pressure humidity air pollution',
       packages=find_packages(),
       py_modules=['bme68xConstants', 'bsecConstants'],
-      package_data={
-          'bme68x': [
-               'BSEC_2.0.6.1_Generic_Release_04302021/config/bsec_sel_iaq_33v_4d/2021_04_29_02_51_bsec_h2s_nonh2s_2_0_6_1 .config',
-          ]
-      },
-      headers=['BME68x-Sensor-API/bme68x.h',
-               'BME68x-Sensor-API/bme68x_defs.h', 'internal_functions.h'],
+      headers=[str(BSEC_SENSOR_API_ROOT / 'bme68x.h'),
+               str(BSEC_SENSOR_API_ROOT / 'bme68x_defs.h'),
+               'internal_functions.h'],
       ext_modules=[bme68x])

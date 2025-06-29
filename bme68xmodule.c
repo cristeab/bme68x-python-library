@@ -8,7 +8,6 @@
 
 #define BME68X_VALID_DATA UINT8_C(0xB0) // DEZ 176  BIN 1011000 -> BITWISE & WITH BME68X_NEW_DATA_MSK 0x80, BME68X_GASM_VALID_MASK 0x20 AND BME68X_HEAT_STAB_MSK 0x10 YIELDS 1
 #define BME68X_FLOAT_POINT_COMPENSATION
-#define BSEC
 
 uint64_t time_stamp_interval_us = 0;
 uint32_t n_samples = 0;
@@ -18,7 +17,6 @@ uint8_t bsec_state[BSEC_MAX_STATE_BLOB_SIZE];
 uint8_t work_buffer[BSEC_MAX_WORKBUFFER_SIZE];
 uint32_t bsec_state_len = 0;
 bsec_library_return_t bsec_status = BSEC_OK;
-const char *bsec_conf_path = "BSEC_2.0.6.1_Generic_Release_04302021/config/bsec_sel_iaq_33v_4d/2021_04_29_02_51_bsec_h2s_nonh2s_2_0_6_1 .config";
 FILE *bsec_conf;
 #endif
 
