@@ -333,7 +333,7 @@ static PyObject *bme_get_sensor_id(BMEObject *self)
     uint32_t len = 4;
     uint32_t uid;
     int8_t rslt;
-    rslt = bme68x_get_regs(BME68X_REG_UNIQUE_ID, &id_regs, len, &(self->bme));
+    rslt = bme68x_get_regs(BME68X_REG_UNIQUE_ID, id_regs, len, &(self->bme));
     if (rslt < BME68X_OK)
     {
         PyErr_SetString(bmeError, "Failed to read sensor id register");
@@ -383,10 +383,10 @@ static PyObject *bme_subscribe_gas_estimates(BMEObject *self, PyObject *args)
     for (uint8_t i = 0; i < n_requested_virtual_sensors; i++)
     {
         requested_virtual_sensors[i].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_1 + i;
-        requested_virtual_sensors[i].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+        requested_virtual_sensors[i].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     }
     requested_virtual_sensors[n_requested_virtual_sensors].sensor_id = BSEC_OUTPUT_RAW_GAS_INDEX;
-    requested_virtual_sensors[n_requested_virtual_sensors].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[n_requested_virtual_sensors].sample_rate = BSEC_SAMPLE_RATE_SCAN;
 
     self->rslt = bsec_update_subscription(requested_virtual_sensors, n_requested_virtual_sensors, required_sensor_settings, &n_required_sensor_settings);
 
@@ -403,15 +403,15 @@ static PyObject *bme_subscribe_ai_classes(BMEObject *self)
     uint8_t n_required_sensor_settings = BSEC_MAX_PHYSICAL_SENSOR;
 
     requested_virtual_sensors[0].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_1;
-    requested_virtual_sensors[0].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[0].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[1].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_2;
-    requested_virtual_sensors[1].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[1].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[2].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_3;
-    requested_virtual_sensors[2].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[2].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[3].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_4;
-    requested_virtual_sensors[3].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[3].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[4].sensor_id = BSEC_OUTPUT_RAW_GAS_INDEX;
-    requested_virtual_sensors[4].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[4].sample_rate = BSEC_SAMPLE_RATE_SCAN;
 
     self->rslt = bsec_update_subscription(requested_virtual_sensors, n_requested_virtual_sensors, required_sensor_settings, &n_required_sensor_settings);
 
@@ -1582,13 +1582,13 @@ static PyObject *bme_enable_gas_estimates(BMEObject *self)
     uint8_t n_required_sensor_settings = BSEC_MAX_PHYSICAL_SENSOR;
 
     requested_virtual_sensors[0].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_1;
-    requested_virtual_sensors[0].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[0].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[1].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_2;
-    requested_virtual_sensors[1].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[1].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[2].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_3;
-    requested_virtual_sensors[2].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[2].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[3].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_4;
-    requested_virtual_sensors[3].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[3].sample_rate = BSEC_SAMPLE_RATE_SCAN;
 
     self->rslt = bsec_update_subscription(requested_virtual_sensors, n_requested_virtual_sensors, required_sensor_settings, &n_required_sensor_settings);
     printf("ENABLE GAS ESTIMATES RSLT %d\n", self->rslt);

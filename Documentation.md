@@ -116,7 +116,7 @@ set_sample_rate(float)
 - Args: One of the following
   - BSEC_SAMPLE_RATE_ULP <p> ULP has a drain of \< 0.1 mA and an update rate of 300 sec </p>
   - BSEC_SAMPLE_RATE_LP <p> LP is for interactive displays and has a drain of \<1 mA and an update rate of 3 sec </p>
-  - BSEC_SAMPLE_RATE_HIGH_PERFORMANCE <p> is for continuous sampling </p>
+  - BSEC_SAMPLE_RATE_SCAN <p> is for continuous sampling </p>
   - See bsecConstants.py
 - Returns:
   - 0 for sucess
@@ -199,7 +199,7 @@ update_bsec_subscription()
 
 By default all virtual sensors are enabled in high power mode.
 ```C
-requested_virtual_sensors[0].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+requested_virtual_sensors[0].sample_rate = BSEC_SAMPLE_RATE_SCAN;
 ```
 This function supports an update to low power mode (BSEC_SAMPLE_RATE_LP) for each virtual sensor. 
 Note: The BOSCH integration guide has a table on page 8, Section 1.2.4 Supported Virtual Sensor Output Signals, providing details for each virtual sensor. 

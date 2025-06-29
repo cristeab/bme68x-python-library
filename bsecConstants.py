@@ -12,7 +12,7 @@ BSEC_SAMPLE_RATE_ULP = 0.0033333
 BSEC_SAMPLE_RATE_LP = 0.33333
 # Input value used to trigger an extra measurment (ULP plus)
 BSEC_SAMPLE_RATE_ULP_MEASUREMENT_ON_DEMAND = 0.0
-BSEC_SAMPLE_RATE_HIGH_PERFORMANCE = 0.055556
+BSEC_SAMPLE_RATE_SCAN = 0.055556
 
 # Measurement Value ranges
 # Min value for IAQ

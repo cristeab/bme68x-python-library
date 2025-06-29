@@ -18,7 +18,7 @@ print(sensor.get_data())
 
 print('\n\nPARALLEL MODE WITH BSEC')
 sensor = BME68X(cnst.BME68X_I2C_ADDR_HIGH, 0)
-sensor.set_sample_rate(bsec.BSEC_SAMPLE_RATE_HIGH_PERFORMANCE)
+sensor.set_sample_rate(bsec.BSEC_SAMPLE_RATE_SCAN)
 
 
 def get_data(sensor):

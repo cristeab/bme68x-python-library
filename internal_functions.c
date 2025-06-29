@@ -243,29 +243,29 @@ bsec_library_return_t bsec_set_sample_rate_ai(uint8_t variant_id, struct bme68x_
     printf("SHARED HEATR DUR IN SET SAMPLE RATE AI %d\n", bme68x_heatr_conf.shared_heatr_dur);
 
     requested_virtual_sensors[0].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_1;
-    requested_virtual_sensors[0].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[0].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[1].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_2;
-    requested_virtual_sensors[1].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[1].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[2].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_3;
-    requested_virtual_sensors[2].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[2].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[3].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_4;
-    requested_virtual_sensors[3].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[3].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[4].sensor_id = BSEC_OUTPUT_RAW_TEMPERATURE;
-    requested_virtual_sensors[4].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[4].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[5].sensor_id = BSEC_OUTPUT_RAW_PRESSURE;
-    requested_virtual_sensors[5].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[5].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[6].sensor_id = BSEC_OUTPUT_RAW_HUMIDITY;
-    requested_virtual_sensors[6].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[6].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[7].sensor_id = BSEC_OUTPUT_RAW_GAS;
-    requested_virtual_sensors[7].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[7].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[8].sensor_id = BSEC_OUTPUT_RAW_GAS_INDEX;
-    requested_virtual_sensors[8].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[8].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[9].sensor_id = BSEC_OUTPUT_IAQ;
-    requested_virtual_sensors[9].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[9].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[10].sensor_id = BSEC_OUTPUT_SENSOR_HEAT_COMPENSATED_TEMPERATURE;
-    requested_virtual_sensors[10].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[10].sample_rate = BSEC_SAMPLE_RATE_SCAN;
     requested_virtual_sensors[11].sensor_id = BSEC_OUTPUT_SENSOR_HEAT_COMPENSATED_HUMIDITY;
-    requested_virtual_sensors[11].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+    requested_virtual_sensors[11].sample_rate = BSEC_SAMPLE_RATE_SCAN;
 
     /*
     float SEL = ((float)1000) / ((float)bme68x_heatr_conf.shared_heatr_dur);
@@ -276,7 +276,7 @@ bsec_library_return_t bsec_set_sample_rate_ai(uint8_t variant_id, struct bme68x_
         if (i < num_ai_classes)
         {
             requested_virtual_sensors[i].sensor_id = BSEC_OUTPUT_GAS_ESTIMATE_1 + i;
-            requested_virtual_sensors[i].sample_rate = BSEC_SAMPLE_RATE_HIGH_PERFORMANCE;
+            requested_virtual_sensors[i].sample_rate = BSEC_SAMPLE_RATE_SCAN;
         }
     }
 

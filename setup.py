@@ -1,14 +1,16 @@
 from setuptools import setup, Extension, find_packages
 from pathlib import Path
 
-BSEC = True
 BSEC_ROOT = Path('bsec2-6-1-0_generic_release_22102024')
+BSEC_ALGO_ROOT = BSEC_ROOT / 'algo/bsec_IAQ_Sel'
+BSEC_LIB_DIR = BSEC_ALGO_ROOT / 'bin/RaspberryPi/PiFour_Armv8'
+BSEC_INC_DIR = BSEC_ALGO_ROOT / 'inc'
 BSEC_SENSOR_API_ROOT = BSEC_ROOT / 'examples/BSEC_Integration_Examples/src/bme68x'
 
 ext_comp_args = ['-D BSEC']
 libs = ['pthread', 'm', 'rt', 'algobsec']
 lib_dirs = ['/usr/local/lib',
-            str(BSEC_ROOT / 'algo/bsec_IAQ/bin/RaspberryPi/PiFour_Armv8')]
+            str(BSEC_LIB_DIR)]
 
 LIBDIR = Path(__file__).parent
 
@@ -18,7 +20,7 @@ bme68x = Extension('bme68x',
                    extra_compile_args=ext_comp_args,
                    include_dirs=['/usr/local/include',
                                   str(BSEC_SENSOR_API_ROOT),
-                                  str(BSEC_ROOT / 'algo/bsec_IAQ/inc')],
+                                  str(BSEC_INC_DIR)],
                    libraries=libs,
                    library_dirs=lib_dirs,
                    depends=[str(BSEC_SENSOR_API_ROOT / 'bme68x.h'),
